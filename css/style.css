@@ -128,6 +128,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .weather-img {
     display: block;
@@ -185,4 +186,12 @@ footer{
     background-color: rgb(78, 78, 80);
     justify-content: center;
     align-items: center;
+}
+.description{
+    font-size: 24px;
+    font-weight: 300;
+}
+.forecast-description{
+    font-size: 16px;
+    font-weight: 300;
 }
