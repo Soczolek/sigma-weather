@@ -8,6 +8,7 @@ const locationEl = document.querySelector('.location');
 const currentWeatherEl = document.querySelector('.current-weather-location');
 const tempEl = document.querySelector('.temp');
 const forecastEl = document.querySelector('.forecast');
+const descEl = document.querySelector('.description');
 
 const days = ['niedziela', 'poniedziałek', 'wtorek', 'środa', 'czwartek', 'piątek', 'sobota'];
 const months = ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'];
@@ -31,8 +32,8 @@ searchButton.addEventListener('click', function() {
     const searchInput = document.querySelector('.search');
     searchValue = searchInput.value;
     console.log(searchValue);
-    url = base+'weather?q='+searchValue+'&appid='+apiKey+'&units=metric';
-    forecastUrl = base+'forecast?q='+searchValue+'&appid='+apiKey+'&units=metric';
+    url = base+'weather?q='+searchValue+'&appid='+apiKey+'&units=metric&lang=pl';
+    forecastUrl = base+'forecast?q='+searchValue+'&appid='+apiKey+'&units=metric&lang=pl';
     console.log(url);
 });
 
@@ -42,9 +43,11 @@ searchButton.addEventListener('click', function getCurrentWeather() {
         const comma = ', ';
         let icon = data.weather['0'].icon;
         let temperature = data.main.temp;
+        let desc = data.weather['0'].description;
         locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> ${data.name}${comma}${data.sys.country}`;
         currentWeatherEl.innerHTML = `Pogoda dla: ${data.name}${comma}${data.sys.country}<img class="weather-img" src="https://openweathermap.org/img/wn/${icon}@4x.png">`;
         tempEl.innerHTML = `${Math.round(temperature)} °C`;
+        descEl.innerHTML = `${desc}`;
     });
 });
 
@@ -60,18 +63,22 @@ searchButton.addEventListener('click', function getForecast() {
         let forecastSecond = data.list['16'];
         let forecastThird = data.list['24'];
         let forecastFourth = data.list['32'];
-        let dateFirst = formatDate(forecastFirst.dt_txt)
-        let dateSecond = formatDate(forecastSecond.dt_txt)
-        let dateThird = formatDate(forecastThird.dt_txt)
-        let dateFourth = formatDate(forecastFourth.dt_txt)
+        let dateFirst = formatDate(forecastFirst.dt_txt);
+        let dateSecond = formatDate(forecastSecond.dt_txt);
+        let dateThird = formatDate(forecastThird.dt_txt);
+        let dateFourth = formatDate(forecastFourth.dt_txt);
         let iconFirst = forecastFirst.weather['0'].icon;
         let iconSecond = forecastSecond.weather['0'].icon;
         let iconThird = forecastThird.weather['0'].icon;
         let iconFourth = forecastFourth.weather['0'].icon;
-        let tempFirst = Math.round(forecastFirst.main.temp)
-        let tempSecond = Math.round(forecastSecond.main.temp)
-        let tempThird = Math.round(forecastThird.main.temp)
-        let tempFourth = Math.round(forecastFourth.main.temp)
+        let tempFirst = Math.round(forecastFirst.main.temp);
+        let tempSecond = Math.round(forecastSecond.main.temp);
+        let tempThird = Math.round(forecastThird.main.temp);
+        let tempFourth = Math.round(forecastFourth.main.temp);
+        let descFirst = forecastFirst.weather['0'].description;
+        let descSecond = forecastSecond.weather['0'].description;
+        let descThird = forecastThird.weather['0'].description;
+        let descFourth = forecastFourth.weather['0'].description;
         console.log(data);
         console.log(forecastFirst);
         console.log(forecastSecond);
@@ -86,21 +93,25 @@ searchButton.addEventListener('click', function getForecast() {
             <p>${dateFirst}</p>
             <img class="weather-img" src="https://openweathermap.org/img/wn/${iconFirst}@2x.png">
             <p class="forecast-temp">${tempFirst} °C</p>
+            <p class="forecast-description">${descFirst}</p>
         </div>
         <div class="forecast2">
             <p>${dateSecond}</p>
             <img class="weather-img" src="https://openweathermap.org/img/wn/${iconSecond}@2x.png">
             <p class="forecast-temp">${tempSecond} °C</p>
+            <p class="forecast-description">${descSecond}</p>
         </div>
         <div class="forecast3">
             <p>${dateThird}</p>
             <img class="weather-img" src="https://openweathermap.org/img/wn/${iconThird}@2x.png">
             <p class="forecast-temp">${tempThird} °C</p>
+            <p class="forecast-description">${descThird}</p>
         </div>
         <div class="forecast4">
             <p>${dateFourth}</p>
             <img class="weather-img" src="https://openweathermap.org/img/wn/${iconFourth}@2x.png">
             <p class="forecast-temp">${tempFourth} °C</p>
+            <p class="forecast-description">${descFourth}</p>
         </div>`
     });
 });
