@@ -9,7 +9,7 @@
 }
 body {
     background-color: #fff;
-    background-image: url(../img/background-image.jpg);
+    background-image: url(../img/background-light.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
@@ -194,4 +194,19 @@ footer{
 .forecast-description{
     font-size: 16px;
     font-weight: 300;
+}
+.lang-select{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.lang-select > div {
+    margin-right: 16px;
+}
+.lang-select img {
+    width: 36px;
+    height: 36px;
+}
+.lang-select img:hover{
+    cursor: pointer;
 }
