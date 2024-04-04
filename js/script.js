@@ -67,7 +67,7 @@ selectEnEl.addEventListener('click', function langEn() {
         locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> No location given!`};
         forecastText.textContent = 'Forecast for the upcoming days';
         searchInput.placeholder = 'Enter location';
-        forecastEl.innerHTML = `;
+        forecastEl.innerHTML = `
         <div class="empty-forecast"><p>-</p></div>
         <div class="empty-forecast"><p>-</p></div>
         <div class="empty-forecast"><p>-</p></div>
@@ -129,12 +129,16 @@ function getCurrentWeather() {
             if (searchValue === ''){
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Wprowadź lokalizację!`
                 locationEl.style.color = '#ee6b6e'
+                tempEl.innerHTML = `-`
+                descEl.innerHTML = ``
+                currentWeatherEl.innerHTML = ``
             }
             else if (data.cod = 404){
-                clearWeather();
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie znaleziono lokalizacji!`
                 locationEl.style.color = '#ee6b6e'
-                console.log('404');
+                tempEl.innerHTML = `-`
+                descEl.innerHTML = ``
+                currentWeatherEl.innerHTML = ``
             }
             console.log(data);
             searchPlEl.textContent = ''
@@ -153,11 +157,16 @@ function getCurrentWeather() {
             if (searchValue === ''){
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Enter location!`
                 locationEl.style.color = '#ee6b6e'
+                tempEl.innerHTML = `-`
+                descEl.innerHTML = ``
+                currentWeatherEl.innerHTML = ``
             }
             else if (data.cod = 404){
-                clearWeather();
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Location not found!`
                 locationEl.style.color = '#ee6b6e'
+                tempEl.innerHTML = `-`
+                descEl.innerHTML = ``
+                currentWeatherEl.innerHTML = ``
             }
             console.log(data);
             searchEnEl.textContent = ''
@@ -322,33 +331,3 @@ searchInput.addEventListener('keypress', (event) =>
         getForecast();
     }
 });
-
-function clearWeather() {
-    if (currentLang === 0){
-        currentWeatherEl.textContent = 'Pogoda dla: brak lokalizacji';
-        searchEnEl.textContent = '';
-        tempEl.innerHTML = `-`;
-        descEl.innerHTML = ``;
-        locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie podano lokalizacji!`;
-        forecastText.textContent = 'Prognoza na następne dni';
-        searchInput.placeholder = 'Wprowadź lokalizację';
-        forecastEl.innerHTML = `
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>`;
-    }
-    else if (currentLang === 1){
-        searchPlEl.textContent = '';
-        searchEnEl.textContent = 'Weather for: no location';
-        tempEl.innerHTML = `-`;
-        descEl.innerHTML = ``;
-        locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> No location given!`};
-        forecastText.textContent = 'Forecast for the upcoming days';
-        searchInput.placeholder = 'Enter location';
-        forecastEl.innerHTML = `;
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>
-        <div class="empty-forecast"><p>-</p></div>`;
-};
