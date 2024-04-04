@@ -132,6 +132,11 @@ function getCurrentWeather() {
                 tempEl.innerHTML = `-`
                 descEl.innerHTML = ``
                 currentWeatherEl.innerHTML = ``
+                forecastEl.innerHTML = `
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>`;
             }
             else if (data.cod = 404){
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie znaleziono lokalizacji!`
@@ -139,6 +144,11 @@ function getCurrentWeather() {
                 tempEl.innerHTML = `-`
                 descEl.innerHTML = ``
                 currentWeatherEl.innerHTML = ``
+                forecastEl.innerHTML = `
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>`;
             }
             console.log(data);
             searchPlEl.textContent = ''
@@ -160,6 +170,11 @@ function getCurrentWeather() {
                 tempEl.innerHTML = `-`
                 descEl.innerHTML = ``
                 currentWeatherEl.innerHTML = ``
+                forecastEl.innerHTML = `
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>`;
             }
             else if (data.cod = 404){
                 locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Location not found!`
@@ -167,6 +182,11 @@ function getCurrentWeather() {
                 tempEl.innerHTML = `-`
                 descEl.innerHTML = ``
                 currentWeatherEl.innerHTML = ``
+                forecastEl.innerHTML = `
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>
+                <div class="empty-forecast"><p>-</p></div>`;
             }
             console.log(data);
             searchEnEl.textContent = ''
