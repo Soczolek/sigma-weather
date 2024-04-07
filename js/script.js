@@ -42,6 +42,7 @@ selectPlEl.addEventListener('click', function langPl() {
         locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie podano lokalizacji!`;
         forecastText.textContent = 'Prognoza na następne dni';
         searchInput.placeholder = 'Wprowadź lokalizację';
+        document.title = 'Sigma Weather - pogoda dla prawdziwych sigm';
         forecastEl.innerHTML = `
         <div class="empty-forecast"><p>-</p></div>
         <div class="empty-forecast"><p>-</p></div>
@@ -73,6 +74,7 @@ selectEnEl.addEventListener('click', function langEn() {
         locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> No location given!`};
         forecastText.textContent = 'Forecast for the upcoming days';
         searchInput.placeholder = 'Enter location';
+        document.title = 'Sigma Weather - weather for real sigmas';
         forecastEl.innerHTML = `
         <div class="empty-forecast"><p>-</p></div>
         <div class="empty-forecast"><p>-</p></div>
