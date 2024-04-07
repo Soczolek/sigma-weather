@@ -13,7 +13,7 @@ const selectPlEl = document.querySelector('.select-pl');
 const selectEnEl = document.querySelector('.select-en');
 const searchPlEl = document.querySelector('.search-pl');
 const searchEnEl = document.querySelector('.search-en');
-const forecastText = document.querySelector('.forecast-text')
+const forecastText = document.querySelector('.forecast-text');
 
 let currentLang = 0;
 selectPlEl.addEventListener('click', function langPl() {
@@ -21,17 +21,20 @@ selectPlEl.addEventListener('click', function langPl() {
         return;
     }
     else if (currentLang === 1){
+        currentLang = 0;
         if (locationEl.innerHTML === "<i class='fas fa-location-arrow'></i> Nie podano lokalizacji!)"){
             return;
         }
         else{
             currentLang = 0
-            fetchWeather();
-            getCurrentWeather();
-            getForecast();
+            if (searchValue !==''){
+                fetchWeather();
+                getCurrentWeather();
+                getForecast();
+            }
         };
     };
-        currentLang = 0;
+        locationEl.style.color = 'white'
         currentWeatherEl.textContent = 'Pogoda dla: brak lokalizacji';
         searchEnEl.textContent = '';
         tempEl.innerHTML = `-`;
@@ -50,16 +53,19 @@ selectEnEl.addEventListener('click', function langEn() {
         return;
     }
     else if (currentLang === 0){
+        currentLang = 1;
         if (locationEl.innerHTML === "<i class='fas fa-location-arrow'></i> No location given!"){
             return;
         }
         else{
-            currentLang = 1
-            fetchWeather();
-            getCurrentWeather();
-            getForecast();
-        } 
-        currentLang = 1;
+            currentLang = 1;
+            if (searchValue !==''){
+                fetchWeather();
+                getCurrentWeather();
+                getForecast();
+            }
+        };
+        locationEl.style.color = 'white'
         searchPlEl.textContent = '';
         searchEnEl.textContent = 'Weather for: no location';
         tempEl.innerHTML = `-`;
@@ -127,23 +133,23 @@ function getCurrentWeather() {
     if (currentLang === 0) {
         fetch(url).then(res => res.json()).then(data =>{
             if (searchValue === ''){
-                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Wprowadź lokalizację!`
-                locationEl.style.color = '#ee6b6e'
-                tempEl.innerHTML = `-`
-                descEl.innerHTML = ``
-                currentWeatherEl.innerHTML = ``
+                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Wprowadź lokalizację!`;
+                locationEl.style.color = '#ee6b6e';
+                tempEl.textContent = '-';
+                descEl.textContent = '';
                 forecastEl.innerHTML = `
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>`;
+                currentWeatherEl.textContent = 'Pogoda dla: brak lokalizacji';
             }
             else if (data.cod = 404){
-                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie znaleziono lokalizacji!`
-                locationEl.style.color = '#ee6b6e'
-                tempEl.innerHTML = `-`
-                descEl.innerHTML = ``
-                currentWeatherEl.innerHTML = ``
+                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Nie znaleziono lokalizacji!`;
+                locationEl.style.color = '#ee6b6e';
+                tempEl.textContent = '-';
+                descEl.textContent = '';
+                currentWeatherEl.textContent = 'Pogoda dla: brak lokalizacji';
                 forecastEl.innerHTML = `
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
@@ -151,7 +157,7 @@ function getCurrentWeather() {
                 <div class="empty-forecast"><p>-</p></div>`;
             }
             console.log(data);
-            searchPlEl.textContent = ''
+            searchEnEl.textContent = ''
             const comma = ', ';
             let icon = data.weather['0'].icon;
             let temperature = data.main.temp;
@@ -165,23 +171,23 @@ function getCurrentWeather() {
     } else if (currentLang === 1) {
         fetch(urlEn).then(res => res.json()).then(data =>{
             if (searchValue === ''){
-                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Enter location!`
-                locationEl.style.color = '#ee6b6e'
-                tempEl.innerHTML = `-`
-                descEl.innerHTML = ``
-                currentWeatherEl.innerHTML = ``
+                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Enter location!`;
+                locationEl.style.color = '#ee6b6e';
+                tempEl.textContent = '-';
+                descEl.textContent = '';
                 forecastEl.innerHTML = `
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>`;
+                currentWeatherEl.textContent = 'Weather for: no location';
             }
             else if (data.cod = 404){
-                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Location not found!`
-                locationEl.style.color = '#ee6b6e'
-                tempEl.innerHTML = `-`
-                descEl.innerHTML = ``
-                currentWeatherEl.innerHTML = ``
+                locationEl.innerHTML = `<i class='fas fa-location-arrow'></i> Location not found!`;
+                locationEl.style.color = '#ee6b6e';
+                tempEl.textContent = '-';
+                descEl.textContent = '';
+                currentWeatherEl.textContent = 'Weather for: no location';
                 forecastEl.innerHTML = `
                 <div class="empty-forecast"><p>-</p></div>
                 <div class="empty-forecast"><p>-</p></div>
