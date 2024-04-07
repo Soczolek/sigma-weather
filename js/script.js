@@ -108,7 +108,7 @@ let forecastUrl = '';
 
 function fetchWeather() {
     const searchInput = document.querySelector('.search');
-    searchValue = searchInput.value;
+    searchValue = searchInput.value.trim();
     console.log(searchValue);
     url = base+'weather?q='+searchValue+'&appid='+apiKey+'&units=metric&lang=pl';
     urlEn = base+'weather?q='+searchValue+'&appid='+apiKey+'&units=metric&lang=en';
